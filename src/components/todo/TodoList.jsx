@@ -1,13 +1,16 @@
 import React from 'react'
 import LoaderIcon from '../../assets/svg/LoaderIcon'
+import UnDrawProg from '../../assets/svg/UnDrawProg';
 import useFetch from '../../hooks/useFetch';
 import TodoCardSkeleton from '../skeleton/TodoCardSkeleton';
 import TodoCard from './TodoCard'
 
 const TodoList = () => {
     const { data: todos, loading, error, refetch } = useFetch(
-        "http://localhost:4000/getTask"
+        `http://localhost:4000/getTask`
     );
+
+
     return (
         <>
             <div className='container mx-auto'>
@@ -17,8 +20,8 @@ const TodoList = () => {
                     </div>
                     <div >
 
-                        <div className='cursor-pointer ' onClick={refetch}>
-                            {loading === true ? <div className='animate-spin'><LoaderIcon /></div> : <LoaderIcon />}
+                        <div className={loading ? 'pointer-events-none animate-spin  fill-neutral-400' : 'cursor-pointer'} onClick={refetch}>
+                            <LoaderIcon />
                         </div>
                     </div>
                 </div>
@@ -26,8 +29,9 @@ const TodoList = () => {
                     {
                         loading === true ? <TodoCardSkeleton /> :
                             todos?.map((todos) => (
-                                <TodoCard key={todos.id} {...todos} />
-                            ))}
+                                <TodoCard {...todos} />
+                            ))
+                    }
                 </div>
             </div>
         </>

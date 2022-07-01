@@ -33,6 +33,7 @@ function useFetch(url) {
   }, [url]);
 
   const refetch = () => {
+    console.log('refreshing')
     setLoading(true);
     axios
       .get(url)

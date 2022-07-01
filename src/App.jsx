@@ -1,13 +1,10 @@
 import React from 'react'
-import TodoHeader from './components/header/TodoHeader'
-import TodoList from './components/todo/TodoList'
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import HomeScreen from './components/screens/HomeScreen';
 
-function App() {
+const App = () => {
     return (
-        <>
-            <TodoHeader />
-            <TodoList />
-        </>
+        <HomeScreen />
     )
 }
 
